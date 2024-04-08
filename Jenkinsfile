@@ -25,7 +25,7 @@ pipeline {
        stage('Docker Build and Push') {
           steps {
             withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
-              sh 'prinenv'
+              sh 'printenv'
               sh 'docker build -t zhumazia/numeric-app:""$GIT_COMMIT"" .'
               sh 'docker push zhumazia/numeric-app:""$GIT_COMMIT""'
             }
