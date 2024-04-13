@@ -42,11 +42,11 @@ pipeline {
               -Dsonar.host.url=http://devsecops-zumi.eastus.cloudapp.azure.com:9000"
           }
 
-          timeout(time: 2, unit: 'MINUTES') {
-              script{
-              waitForQualityGate abortPipeline: true
-              }
-          }
+           timeout(time: 2, unit: 'MINUTES') {
+            script {
+                waitForQualityGate abortPipeline: true
+             }
+           }
         }
       }
      
