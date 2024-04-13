@@ -35,10 +35,13 @@ pipeline {
       }
       stage('Sonarqube - SAST') {
         steps {
-          withSonarQubeEnv('sonarqube') {
-          sh " mvn clean verify sonar:sonar -Dsonar.projectKey=numeric-application -Dsonar.projectName='numeric-application' -Dsonar.host.url=http://devsecops-zumi.eastus.cloudapp.azure.com:9000  -Dsonar.login=sqp_9cfabd32dd4647cc50e1965c50f0ca8b10d534d0"
+          
+          sh " mvn clean verify sonar:sonar \
+              -Dsonar.projectKey=numeric-application1 \
+              -Dsonar.projectName='numeric-application1' \
+              -Dsonar.host.url=http://devsecops-zumi.eastus.cloudapp.azure.com:9000 \
+              -Dsonar.token=sqp_0271deb0198bb3ca797c9367a9b8c21525c32241"
           }
-        }
         
       }
      
