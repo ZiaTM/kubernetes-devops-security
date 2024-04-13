@@ -39,14 +39,7 @@ pipeline {
         }
         
       }
-      mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=numeric-application \
-  -Dsonar.projectName='numeric-application' \
-  -Dsonar.host.url=http://devsecops-zumi.eastus.cloudapp.azure.com:9000 \
-  -Dsonar.token=sqp_fbce89599d8a22af2cfd539d6be64906e18be291
-
-
-
+     
 
        stage('Docker Build and Push') {
           steps {
