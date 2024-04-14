@@ -10,10 +10,7 @@ pipeline {
   }
 
 
-
-
-
-  stages {
+ stages {
       stage('Build Artifact') {
             steps {
               sh "mvn clean package -DskipTests=true"
@@ -97,10 +94,9 @@ pipeline {
                   sh "bash "
                   }
               }
-            )
-                
-        }
-       
+            )                
+          }
+       }     
       }
 
     post { 
