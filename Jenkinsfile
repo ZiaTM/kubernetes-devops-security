@@ -95,11 +95,10 @@ pipeline {
               "Rollout Status":{
                 withKubeConfig([credentialsId:'kubeconfig']){
                   sh "bash "
-
+                  }
               }
-
             )
-                }
+                
         }
        
       }
