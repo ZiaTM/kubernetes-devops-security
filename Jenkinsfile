@@ -30,7 +30,7 @@ pipeline {
               -Dsonar.projectKey=numeric-appliction \
               -Dsonar.projectName='numeric-appliction' \
               -Dsonar.host.url=http://devsecops-zumi.eastus.cloudapp.azure.com:9000"
-          }
+            }
 
            timeout(time: 2, unit: 'MINUTES') {
             script {
@@ -41,18 +41,18 @@ pipeline {
       }
 
       stage('Vulnerability Scan -Docker'){
-            steps {
+        steps {
               parallel(
                   "Dependency Scan:" {
                     sh "mvn dependency-check:check"
-                    },
-                    
+                  },
+
                   "Trivy Scan:" {
                     sh "bash trivy-docker-image-scan.sh"
                   }
                 )
-            }
-         }
+        }
+      }
 
        stage('Docker Build and Push') {
           steps {
@@ -62,7 +62,7 @@ pipeline {
               sh 'docker push zhumazia/numeric-app:""$GIT_COMMIT""'
             }
           }
-       }
+        }
        stage('Kubernetes deployment - DEV') {
                 steps{
                     withKubeConfig([credentialsId:'kubeconfig']){
@@ -70,9 +70,9 @@ pipeline {
                       sh "kubectl apply -f k8s_deployment_service.yaml"
                     }
                 }
-       }
+        }
        
-    }
+      }
 
     post { 
         always { 
@@ -82,5 +82,5 @@ pipeline {
             dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
         }
 
-    }
+      }
 }
